@@ -1,0 +1,94 @@
+/* EventFlow design tokens. Components reference these roles, never raw hex. */
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg-page: #f4f6f9;
+  --surface: #ffffff;
+  --surface-muted: #f8f9fb;
+  --surface-hover: #f2f4f7;
+
+  /* Borders */
+  --border: #e4e7ec;
+  --border-strong: #d0d5dd;
+
+  /* Text */
+  --text-primary: #101828;
+  --text-secondary: #475467;
+  --text-muted: #667085;
+  --text-on-accent: #ffffff;
+
+  /* Accent (restrained blue) */
+  --accent: #2563d0;
+  --accent-hover: #1d4fa8;
+  --accent-soft: #edf3fd;
+  --accent-soft-border: #c9dbf7;
+  --focus-ring: 0 0 0 3px rgba(37, 99, 208, 0.22);
+
+  /* Sidebar (dark navy) */
+  --sidebar-bg: #0f1b2d;
+  --sidebar-border: #1d2b40;
+  --sidebar-text: #a9b4c4;
+  --sidebar-text-strong: #ffffff;
+  --sidebar-section: #6b7a90;
+  --sidebar-hover: rgba(255, 255, 255, 0.06);
+  --sidebar-active: rgba(91, 155, 240, 0.14);
+  --sidebar-indicator: #5b9bf0;
+
+  /* Status tones: success, warning, danger, info, neutral (always paired with an icon or label) */
+  --success-text: #067647;
+  --success-bg: #ecfdf3;
+  --success-border: #abefc6;
+  --warning-text: #93370d;
+  --warning-bg: #fffaeb;
+  --warning-border: #fedf89;
+  --danger-text: #b42318;
+  --danger-bg: #fef3f2;
+  --danger-border: #fecdca;
+  --info-text: #175cd3;
+  --info-bg: #eff8ff;
+  --info-border: #b2ddff;
+  --neutral-text: #475467;
+  --neutral-bg: #f2f4f7;
+  --neutral-border: #e4e7ec;
+
+  /* Data visualisation (validated reference palette, light mode) */
+  --viz-series-1: #2a78d6;
+  --viz-muted-mark: #c3c2b7;
+  --viz-track: #eef1f5;
+  --viz-grid: #e9ecf0;
+  --viz-baseline: #c3c8d1;
+  --viz-axis-text: #7a8394;
+
+  /* Shape & depth */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-md: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-popover: 0 12px 24px -6px rgba(16, 24, 40, 0.14), 0 4px 8px -4px rgba(16, 24, 40, 0.06);
+
+  /* Spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+
+  /* Layout */
+  --sidebar-width: 248px;
+  --sidebar-rail-width: 64px;
+  --header-height: 64px;
+  --content-max: 1440px;
+}

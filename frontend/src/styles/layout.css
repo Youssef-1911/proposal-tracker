@@ -1,0 +1,408 @@
+/*
+ * App shell layout. Uses logical properties (inline-start/end) throughout so the
+ * layout mirrors correctly if dir="rtl" is set for Arabic later.
+ *
+ * Breakpoints:  >= 1200px full sidebar · 768–1199px icon rail · < 768px drawer
+ */
+
+/* ---------- App shell ---------- */
+.app-shell {
+  display: flex;
+  min-block-size: 100%;
+}
+
+.app-main {
+  flex: 1;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  margin-inline-start: var(--sidebar-width);
+}
+
+.app-content {
+  flex: 1;
+  inline-size: 100%;
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+  padding: var(--space-6);
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 0;
+  z-index: 40;
+  inline-size: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  background: var(--sidebar-bg);
+  border-inline-end: 1px solid var(--sidebar-border);
+  color: var(--sidebar-text);
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  block-size: var(--header-height);
+  padding-inline: var(--space-5);
+  border-block-end: 1px solid var(--sidebar-border);
+}
+
+.sidebar__logo {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: var(--text-lg);
+}
+
+.sidebar__brand-text {
+  min-inline-size: 0;
+}
+
+.sidebar__brand-name {
+  display: block;
+  color: var(--sidebar-text-strong);
+  font-weight: 600;
+  font-size: var(--text-lg);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.sidebar__brand-tag {
+  display: block;
+  color: var(--sidebar-section);
+  font-size: var(--text-xs);
+  line-height: 1.2;
+}
+
+.sidebar__close {
+  display: none;
+  margin-inline-start: auto;
+  padding: 6px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--sidebar-text);
+}
+
+.sidebar__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-3);
+}
+
+.sidebar__section + .sidebar__section {
+  margin-block-start: var(--space-5);
+}
+
+.sidebar__section-label {
+  padding: 0 var(--space-3) var(--space-2);
+  color: var(--sidebar-section);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sidebar__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  block-size: 38px;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--sidebar-text);
+  font-size: var(--text-md);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.sidebar__link + .sidebar__link {
+  margin-block-start: 2px;
+}
+
+.sidebar__link:hover {
+  background: var(--sidebar-hover);
+  color: var(--sidebar-text-strong);
+}
+
+.sidebar__link.is-active {
+  background: var(--sidebar-active);
+  color: var(--sidebar-text-strong);
+}
+
+.sidebar__link.is-active::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: -12px;
+  inset-block: 8px;
+  inline-size: 3px;
+  border-start-end-radius: 3px;
+  border-end-end-radius: 3px;
+  background: var(--sidebar-indicator);
+}
+
+.sidebar__link.is-active .icon {
+  color: var(--sidebar-indicator);
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  block-size: var(--header-height);
+  padding-inline: var(--space-6);
+  background: var(--surface);
+  border-block-end: 1px solid var(--border);
+}
+
+.header .header__menu-btn {
+  display: none;
+}
+
+.header__title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-inline-size: 0;
+}
+
+.header__title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-inline-start: auto;
+}
+
+/* ---------- Page layout ---------- */
+/* Back: above the title on every page except Home. 32px tall so it is easy to hit. */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-block-size: 32px;
+  margin-block-end: var(--space-2);
+  margin-inline-start: -8px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-5);
+}
+
+.page-header__title {
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.page-header__subtitle {
+  margin-block-start: 4px;
+  color: var(--text-secondary);
+}
+
+.page-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.page__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---------- Icon rail (tablet) ---------- */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .app-main {
+    margin-inline-start: var(--sidebar-rail-width);
+  }
+
+  .sidebar {
+    inline-size: var(--sidebar-rail-width);
+  }
+
+  .sidebar__brand {
+    justify-content: center;
+    padding-inline: 0;
+  }
+
+  .sidebar__brand-text,
+  .sidebar__label {
+    display: none;
+  }
+
+  .sidebar__nav {
+    padding-inline: var(--space-2);
+  }
+
+  /* Section names become a thin divider; the rail is too narrow for text. */
+  .sidebar__section-label {
+    block-size: 1px;
+    margin: 0 var(--space-2) var(--space-3);
+    padding: 0;
+    overflow: hidden;
+    background: var(--sidebar-border);
+    color: transparent;
+  }
+
+  .sidebar__section:first-child .sidebar__section-label {
+    display: none;
+  }
+
+  .sidebar__link {
+    justify-content: center;
+    padding-inline: 0;
+    block-size: 40px;
+  }
+
+  .sidebar__link.is-active::before {
+    inset-inline-start: -8px;
+  }
+}
+
+/* ---------- Drawer (phone) ---------- */
+@media (max-width: 767px) {
+  .app-main {
+    margin-inline-start: 0;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 180ms ease;
+  }
+
+  [dir='rtl'] .sidebar {
+    transform: translateX(100%);
+  }
+
+  .app-shell.is-nav-open .sidebar {
+    transform: translateX(0);
+    box-shadow: var(--shadow-popover);
+  }
+
+  .sidebar__close {
+    display: inline-flex;
+  }
+
+  .app-shell.is-nav-open .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 35;
+    background: rgba(16, 24, 40, 0.4);
+  }
+
+  .header .header__menu-btn {
+    display: inline-grid;
+  }
+
+  .app-content {
+    padding: var(--space-4);
+  }
+
+  .header {
+    padding-inline: var(--space-4);
+    gap: var(--space-2);
+  }
+}
+
+/* The page shows its own title on wider screens; the header repeats it only on phones. */
+@media (min-width: 768px) {
+  .header__title {
+    display: none;
+  }
+}
+
+/* Which database the server is using: quiet for real data (the normal case). */
+.header__data-label {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* The bell: unread count and the latest 20 */
+.bell { position: relative; }
+.bell__count {
+  position: absolute;
+  inset-block-start: 2px;
+  inset-inline-end: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--info-text);
+  color: var(--text-on-accent);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+.bell__panel { inline-size: min(360px, calc(100vw - 32px)); max-height: 70vh; overflow-y: auto; }
+.bell__head { display: flex; justify-content: space-between; align-items: center; padding: var(--space-3) var(--space-4); }
+.bell__list { margin: 0; padding: 0; list-style: none; }
+.bell__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 0;
+  border-block-start: 1px solid var(--border);
+  background: none;
+  text-align: start;
+  font: inherit;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.bell__item:hover { background: var(--surface-hover); }
+.bell__item.is-unread { color: var(--text-primary); background: var(--info-bg); }
+.bell__title { font-weight: 600; font-size: var(--text-sm); }
+.bell__body, .bell__time { font-size: var(--text-xs); color: var(--text-muted); }

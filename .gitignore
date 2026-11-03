@@ -1,0 +1,21 @@
+# Real client data: never committed, never in backups or shared files.
+import/
+Import/
+*.xlsx
+*.xls
+*.csv
+backend/eventflow-real.db
+backend/eventflow-real.db-*
+backend/storage/proposal-files-real/
+
+# Local databases and uploaded files
+backend/*.db
+backend/*.db-*
+backend/storage/
+
+# Tooling
+node_modules/
+frontend/dist/
+backend/.venv/
+__pycache__/
+.pytest_cache/
